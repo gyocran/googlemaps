@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#map
+			{
+				height: 700px;
+				width: 100%;
+			}
+		</style>
+		<script>
+			function myMap() {
+				var myCenter = new google.maps.LatLng(51.508742,-0.120850);
+				
+				<!-- var myCenter; -->
+				
+				
+				var mapCanvas = document.getElementById("map");
+				var mapOptions = {
+					center: myCenter,
+					zoom: 15,
+					panControl: true,
+					zoomControl: true,
+					mapTypeControl: false,
+					scaleControl: true,
+					streetViewControl: false,
+					overviewMapControl: true,
+					rotateControl: true   
+				};
+				var map = new google.maps.Map(mapCanvas, mapOptions);
+				var marker = new google.maps.Marker({
+					position:myCenter,
+					animation:google.maps.Animation.BOUNCE
+				});
+				var infowindow = new google.maps.InfoWindow({
+					content:"You are here!"
+				});
+				<!-- alert(myCenter); -->
+				
+				
+				if (navigator.geolocation) {
+					<!-- alert("navigator works"); -->
+					navigator.geolocation.getCurrentPosition(function(position) {
+					myCenter = {
+						lat: position.coords.latitude,
+						lng: position.coords.longitude
+					};
+					infowindow.setPosition(myCenter);
+					map.setCenter(myCenter);
+					marker.setMap(map);
+					
+					}, function() {
+					<!-- alert("failed to load"); -->
+					handleLocationError(true, infoWindow, map.getCenter());
+					});
+				}
+				 <!-- else { -->
+				<!-- // Browser doesn't support Geolocation -->
+				<!-- handleLocationError(false, infoWindow, map.getCenter()); -->
+				<!-- }		 -->
+			}
+
+		</script>
+	</head>
+	<body>
+		<h1>My Map</h1>
+		<div id="map">
+		</div>
+	</body>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCr6kVcZzjqmLOVGc4n_XrOhIR8QXo4bdw&callback=myMap"></script>
+</html>
