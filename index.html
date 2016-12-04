@@ -28,10 +28,7 @@
 					rotateControl: true   
 				};
 				var map = new google.maps.Map(mapCanvas, mapOptions);
-				var marker = new google.maps.Marker({
-					position:myCenter,
-					animation:google.maps.Animation.BOUNCE
-				});
+				
 				var infowindow = new google.maps.InfoWindow({
 					content:"You are here!"
 				});
@@ -47,8 +44,11 @@
 					};
 					infowindow.setPosition(myCenter);
 					map.setCenter(myCenter);
+					var marker = new google.maps.Marker({
+						position:myCenter,
+						animation:google.maps.Animation.BOUNCE
+					});
 					marker.setMap(map);
-					
 					}, function() {
 					<!-- alert("failed to load"); -->
 					handleLocationError(true, infoWindow, map.getCenter());
