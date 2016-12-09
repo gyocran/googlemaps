@@ -190,16 +190,16 @@
 						function showError(error) {
 						switch(error.code) {
 						case error.PERMISSION_DENIED:
-						x.innerHTML = "User denied the request for Geolocation."
+						alert("User denied the request for Geolocation.");
 						break;
 						case error.POSITION_UNAVAILABLE:
-						x.innerHTML = "Location information is unavailable."
+						alert("Location information is unavailable.");
 						break;
 						case error.TIMEOUT:
-						x.innerHTML = "The request to get user location timed out."
+						alert("The request to get user location timed out.");
 						break;
 						case error.UNKNOWN_ERROR:
-						x.innerHTML = "An unknown error occurred."
+						alert("An unknown error occurred.");
 						break;
 						}
 						}
@@ -234,9 +234,9 @@
 								</div><!-- /content -->
 							</div><!-- /page -->
 							
-							<div data-role="popup" id="disableduser">
-								<p>Sorry, your account has been currently disabled.</p>
-							</div>
+							<!-- <div data-role="popup" id="disableduser"> -->
+								<!-- <p>Sorry, your account has been currently disabled.</p> -->
+							<!-- </div> -->
 
 							<div data-role="page" id="registerPage" style="background: white">
 								<div data-role="header" style="text-shadow: none">
@@ -331,6 +331,22 @@
 															<a href="#" class="ui-btn ui-icon-plus ui-btn-icon-left">Disable User</a>
 													  <a href="#mappage" class="ui-btn ui-icon-plus ui-btn-icon-left">Show Map</a>
 													</div>
+													</div>
+													
+													<div data-role="page" id="disablepage">
+													<div data-role="header">
+													<!-- <h1 data-inline="true"></h1> -->
+													<h3>Disable user</h3>
+														</div>
+														
+											<button id="disablebutton" type="submit" class="btn btn-default">Disable</button>
+														<!-- </br> -->
+														<div data-role="content">
+															<div class="form-group">
+											<label for="User Id">ID</label>
+											<input type="text" class="form-control" id="user_id" placeholder="Id">
+											</div>
+														</div>
 													</div>
 													
 													

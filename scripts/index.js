@@ -1,7 +1,6 @@
 (function() {
 	// document.addEventListener('deviceready', onDeviceReady.bind(this), false);
-	// document.getElementById("loginbutton").addEventListener("click",
-		// login());
+	
 		// function onDeviceReady() {
 	document.getElementById("loginbutton").addEventListener("click",login);
 	document.getElementById("newUser").addEventListener("click",
@@ -10,6 +9,8 @@
 		getUsers);
 	document.getElementById("refresh").addEventListener("click",
 		reload);
+		document.getElementById("loginbutton").addEventListener("click",
+		login());
 	// };
 	
 	function login(){
@@ -52,7 +53,8 @@
 					// user_id = log.user_id;
 					// console.log(log.user_type);
 					// document.getElementById("adminname").innerHTML = log.user_firstname;
-                    location.href = "#disableduser";
+					errorMsg.innerHTML = "Sorry, you have been disabled";
+                    location.href = "#index";
 					return;
                 }
 				else if(log.user_type == 'Guest')
@@ -65,7 +67,7 @@
             }
 			
 			function registerUser(){
-				alert("register entered");
+				// alert("register entered");
 				// var user_id = user_id;
 				var username = $("#reg_username").val();
 				var firstname = $("#reg_firstname").val();
@@ -161,7 +163,9 @@
 		function disableUser(){
 				// alert("disable user entered");
 				// var user_id = user_id;
-                var url = "admin_ajax.php?cmd=1";
+				
+				var id = $("#user_id").val();
+                var url = "admin_ajax.php?cmd=1&id=$id";
                 $.ajax(url,
                         {
 						      async: true, complete: getUsersComplete
