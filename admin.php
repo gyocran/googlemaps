@@ -26,7 +26,7 @@ class admin extends adb {
 
 	function enableUser($id){
 		$str_query = "UPDATE `locateall`.`user` SET `status` = 'Enabled' WHERE `user`.`id` = $id";
-		echo $str_query;
+		// echo $str_query;
 		return $this->query($str_query);
 	}
 }

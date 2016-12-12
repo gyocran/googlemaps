@@ -1,26 +1,51 @@
 (function() {
-	// document.addEventListener('deviceready', onDeviceReady.bind(this), false);
+	document.addEventListener('deviceready', onDeviceReady.bind(this), false);
 	
-		// function onDeviceReady() {
-	document.getElementById("loginbutton").addEventListener("click",login);
+		function onDeviceReady() {
 	document.getElementById("newUser").addEventListener("click",
 		registerUser);
 	document.getElementById("getusers").addEventListener("click",
 		getUsers);
 	document.getElementById("refresh").addEventListener("click",
 		reload);
-		document.getElementById("loginbutton").addEventListener("click",
-		login());
-	// };
+	document.getElementById("loginbutton").addEventListener("click",
+		login);
+	document.getElementById("disablebutton").addEventListener("click",
+		disableUser);
+	document.getElementById("enablebutton").addEventListener("click",
+		enableUser);
+	document.getElementById("contacts").addEventListener("click",
+		getContacts);
+	};
+	
+	// function getContacts(){
+		// location.href = '#contactspage';
+	// }
+	
+	function getContacts() {
+		navigator.contacts.find([navigator.contacts.fieldType.displayName],getContactsComplete,errorHandler);
+	}
+	
+	function errorHandler(e) {
+		console.log("errorHandler: "+e);
+	}
+	
+	function getContactsComplete(c) {
+		console.log("gotContacts, number of results "+c.length);
+
+		mobileDiv = document.querySelector("#contacts");
+
+		for(var i=0, len=c.length; i<len; i++) {
+			if(c[i].phoneNumbers && c[i].phoneNumbers.length > 0) {
+				mobileDiv.innerHTML += "<p>"+c[i].displayName+"<br/>"+c[i].phoneNumbers[0].value+"</p>";
+			}
+		}
+	}
+
 	
 	function login(){
             var username = $("#username").val();
             var password = $("#password").val();
-			// console.log(password);
-                // if (!validateUsername(username))
-                // {
-                    // return;
-                // }
                 var url = "login_ajax.php?cmd=3&username=" + username + "&pword=" + password;
                 $.ajax(url,
                         {
@@ -28,8 +53,7 @@
                         });
             }
 	  	
-		function loginComplete(xhr, status)
-            {
+	function loginComplete(xhr, status){
                 if (status != "success")
                 {
                     alert("Invalid Login");
@@ -66,7 +90,7 @@
                 }
             }
 			
-			function registerUser(){
+	function registerUser(){
 				// alert("register entered");
 				// var user_id = user_id;
 				var username = $("#reg_username").val();
@@ -86,18 +110,17 @@
                         });
            }
 		   
-		   function registerUserComplete(xhr,status){
-			   var newUser = $.parseJSON(xhr.responseText);
-		if (newUser.result===0)
-                {
-                    alert("failed to add new user");
-					return;
-                }
-				else if(newUser.result===1)
-					console.log(newUser.message);
-				console.log(newUser.sms);
-			    alert("Congratulations! You have been added");
-				// location.href = "#landingpage";
+	function registerUserComplete(xhr,status){
+		var newUser = $.parseJSON(xhr.responseText);
+		if (newUser.result===0){
+                alert("failed to add new user");
+				return;
+            }
+		else if(newUser.result===1)
+			console.log(newUser.message);
+		console.log(newUser.sms);
+		alert("Congratulations! You have been added");
+		// location.href = "#landingpage";
 	}
 	
 	function getUsers(){
@@ -109,10 +132,8 @@
 						      async: true, complete: getUsersComplete
                         });
            }
-		   
-			
-	function getUsersComplete(xhr, status)
-            {
+		   			
+	function getUsersComplete(xhr, status){
                 if (status != "success")
                 {
                     alert("Failed to get users");
@@ -160,24 +181,55 @@
             }
 			}
 			
-		function disableUser(){
+	function disableUser(){
 				// alert("disable user entered");
 				// var user_id = user_id;
 				
-				var id = $("#user_id").val();
-                var url = "admin_ajax.php?cmd=1&id=$id";
-                $.ajax(url,
-                        {
-						      async: true, complete: getUsersComplete
-                        });
-           }
+			var id = $("#user_id").val();
+            var url = "admin_ajax.php?cmd=1&id="+id;
+            $.ajax(url,
+                {
+					async: true, complete: disableUserComplete
+                });
+    }
+		   
+	function disableUserComplete(xhr,status){
+		var currentStatus = $.parseJSON(xhr.responseText);
+		if (currentStatus.result===0){
+            alert(currentStatus.message);
+			return;
+        }
+		else if(currentStatus.result===1)
+			console.log(currentStatus.message);
+			alert(currentStatus.message);
+			getUsers();
+			location.href = "#adminpage";
+	}
 			
-		function disableUser(){
-			alert("works");
-		}
-		
-		function reload(){
+	function reload(){
 			location.reload();
 		};
+	
+	function enableUser(){			
+		var id = $("#user_id").val();
+        var url = "admin_ajax.php?cmd=2&id="+id;
+            $.ajax(url,
+                {
+					async: true, complete: enableUserComplete
+                });
+    }
+	
+	function enableUserComplete(xhr,status){
+		var currentStatus = $.parseJSON(xhr.responseText);
+		if (currentStatus.result===0){
+            alert(currentStatus.message);
+			return;
+        }
+		else if(currentStatus.result===1)
+			console.log(currentStatus.message);
+			alert(currentStatus.message);
+			getUsers();
+			location.href = "#adminpage";
+	}
 })();
 

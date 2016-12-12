@@ -30,7 +30,6 @@ function login() {
         $log = new login();
         $authenticate = $log->userLogin($username, $password);
 
-        // checking if bookings have been gotten from database
         if (!$authenticate) {
             echo '{"result":0,"message":"Error authenticating"}';
             return;

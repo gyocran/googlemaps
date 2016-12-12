@@ -15,6 +15,9 @@
 		case 1:
 			disableUser();
 			break;
+		case 2:
+			enableUser();
+			break;
 		default:
 			echo '{"result":0, "message":"wrong command"}';
 			break;
@@ -63,7 +66,7 @@
 		$users = new admin();
 		$authenticate = $users->disableUser($userid);
 		if($authenticate==0){
-			echo '{"result":0, "message":"User not disabled"}';
+			echo '{"result":0, "message":"User not disabled admin"}';
 		}
 		else
 		{
@@ -82,11 +85,11 @@
 		$users = new admin();
 		$authenticate = $users->enableUser($userid);
 		if($authenticate==0){
-			echo '{"result":0, "message":"User not disabled"}';
+			echo '{"result":0, "message":"User not enabled"}';
 		}
 		else
 		{
-			echo '{"result":1, "message":"User successfully disabled"}';
+			echo '{"result":1, "message":"User successfully enabled"}';
 		}
 	}
 ?>
