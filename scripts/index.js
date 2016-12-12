@@ -1,7 +1,7 @@
 (function() {
-	document.addEventListener('deviceready', onDeviceReady.bind(this), false);
+	// document.addEventListener('deviceready', onDeviceReady.bind(this), false);
 	
-	function onDeviceReady() {
+	// function onDeviceReady() {
 		document.getElementById("newUser").addEventListener("click",
 			registerUser);
 		document.getElementById("getusers").addEventListener("click",
@@ -16,7 +16,7 @@
 			enableUser);
 		document.getElementById("contacts").addEventListener("click",
 			getContacts);
-	};
+	// };
 	
 	// function getContacts(){
 		// location.href = '#contactspage';
