@@ -2,7 +2,7 @@
 <widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.myapp7223c1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US">
   <name>LocateAll</name>
   <description>Map to locate places</description>
-  <author href="http://cordova.io" email="dev@cordova.apache.org">GYO</author>
+  <author href="http://cordova.io" email="gyocran@live.com">GYO</author>
   <content src="index.html" />
   <access origin="*" />
   <vs:features />
@@ -124,4 +124,5 @@
   <plugin name="cordova-plugin-file"  />
   <plugin name="cordova-plugin-geolocation" />
   <plugin name="cordova-plugin-barcodescanner" />
+  <plugin name="cordova-plugin-contacts" />
 </widget>
