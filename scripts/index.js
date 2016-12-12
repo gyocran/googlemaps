@@ -1,21 +1,21 @@
 (function() {
 	document.addEventListener('deviceready', onDeviceReady.bind(this), false);
 	
-		function onDeviceReady() {
-	document.getElementById("newUser").addEventListener("click",
-		registerUser);
-	document.getElementById("getusers").addEventListener("click",
-		getUsers);
-	document.getElementById("refresh").addEventListener("click",
-		reload);
-	document.getElementById("loginbutton").addEventListener("click",
-		login);
-	document.getElementById("disablebutton").addEventListener("click",
-		disableUser);
-	document.getElementById("enablebutton").addEventListener("click",
-		enableUser);
-	document.getElementById("contacts").addEventListener("click",
-		getContacts);
+	function onDeviceReady() {
+		document.getElementById("newUser").addEventListener("click",
+			registerUser);
+		document.getElementById("getusers").addEventListener("click",
+			getUsers);
+		document.getElementById("refresh").addEventListener("click",
+			reload);
+		document.getElementById("loginbutton").addEventListener("click",
+			login);
+		document.getElementById("disablebutton").addEventListener("click",
+			disableUser);
+		document.getElementById("enablebutton").addEventListener("click",
+			enableUser);
+		document.getElementById("contacts").addEventListener("click",
+			getContacts);
 	};
 	
 	// function getContacts(){
