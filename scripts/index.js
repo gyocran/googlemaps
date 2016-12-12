@@ -98,12 +98,12 @@
 	function registerUserComplete(xhr,status){
 		var newUser = $.parseJSON(xhr.responseText);
 		if (newUser.result===0){
-                alert("failed to add new user");
-				return;
+            alert("failed to add new user");
+			return;
             }
 		else if(newUser.result===1)
 			console.log(newUser.message);
-		console.log(newUser.sms);
+			console.log(newUser.sms);
 		alert("Congratulations! You have been added");
 		// location.href = "#landingpage";
 	}
