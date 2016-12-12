@@ -1,7 +1,7 @@
 (function() {
-	// document.addEventListener('deviceready', onDeviceReady.bind(this), false);
+	document.addEventListener('deviceready', onDeviceReady.bind(this), false);
 	
-	// function onDeviceReady() {
+	function onDeviceReady() {
 		document.getElementById("newUser").addEventListener("click",
 			registerUser);
 		document.getElementById("getusers").addEventListener("click",
@@ -16,11 +16,8 @@
 			enableUser);
 		document.getElementById("contacts").addEventListener("click",
 			getContacts);
-	// };
+	};
 	
-	// function getContacts(){
-		// location.href = '#contactspage';
-	// }
 	
 	function getContacts() {
 		navigator.contacts.find([navigator.contacts.fieldType.displayName],getContactsComplete,errorHandler);
@@ -66,24 +63,18 @@
                 }
                 else if(log.user_type == 'Admin')
                 {
-					// user_id = log.user_id;
-					// console.log(log.user_type);
 					document.getElementById("adminname").innerHTML = log.user_firstname;
                     location.href = "#adminpage";
 					return;
                 }
 				else if(log.user_status == 'Disabled')
                 {
-					// user_id = log.user_id;
-					// console.log(log.user_type);
-					// document.getElementById("adminname").innerHTML = log.user_firstname;
 					errorMsg.innerHTML = "Sorry, you have been disabled";
                     location.href = "#index";
 					return;
                 }
 				else if(log.user_type == 'Guest')
                 {
-					// user_id = log.user_id;
 					console.log(log.user_type);
                     location.href = "#mappage";
 					return;
@@ -91,18 +82,12 @@
             }
 			
 	function registerUser(){
-				// alert("register entered");
-				// var user_id = user_id;
 				var username = $("#reg_username").val();
 				var firstname = $("#reg_firstname").val();
 				var lastname = $("#reg_lastname").val();
 				var telephone = $("#reg_telephone").val();
 				var pass = $("#reg_password").val();
 				console.log(username);
-				console.log(firstname);
-				console.log(lastname);
-				console.log(telephone);
-				console.log(pass);
                 var url = "register_ajax.php?cmd=3&username="+username+"&firstname="+firstname+"&lastname="+lastname+"&telephone="+telephone+"&password="+pass;
                 $.ajax(url,
                         {
@@ -124,8 +109,6 @@
 	}
 	
 	function getUsers(){
-				// alert("get users entered");
-				// var user_id = user_id;
                 var url = "admin_ajax.php?cmd=0";
                 $.ajax(url,
                         {
@@ -134,52 +117,38 @@
            }
 		   			
 	function getUsersComplete(xhr, status){
-                if (status != "success")
-                {
-                    alert("Failed to get users");
-                }
+        if (status != "success"){
+				alert("Failed to get users");
+            }
 
-                var users = $.parseJSON(xhr.responseText);
-                if (users == false)
-                {
-                    alert("Failed to get users");
-                }
-                else {
-					console.log(users);
+        var users = $.parseJSON(xhr.responseText);
+        if (users == false){
+            alert("Failed to get users");
+        }
+        else {
+			// console.log(users);
 					
-					// var i = document.getElementById("userstable").innerHTML;
-					// alert("getting users");
-					// alert(i);
-					
-					$("#userstable thead").html("");
-					var dataHeader = "<tr>" + "<th id='col-userId'>" + "User ID" + "</th>" + "<th id='col-username'>" + "Username" + "</th>" + "<th id='col-firstname'>" + 
-					 "Firstname" + "</th>" + "<th id='col-lastname'>" + "Lastname" + "</th>" + "<th id='col-telephone'>" + "Telephone Number" + "</th>" +
-					"<th id='col-type'>" + "Type" + "</th>"+"<th id='col-status'>" + "User Status" + "</th>"+
-					"<th>" + " " + "</th>"+ "</tr>";
-					$(dataHeader).appendTo("#userstable thead");
+			$("#userstable thead").html("");
+			var dataHeader = "<tr>" + "<th id='col-userId'>" + "User ID" + "</th>" + "<th id='col-username'>" + "Username" + "</th>" + "<th id='col-firstname'>" + 
+			"Firstname" + "</th>" + "<th id='col-lastname'>" + "Lastname" + "</th>" + "<th id='col-telephone'>" + "Telephone Number" + "</th>" +
+			"<th id='col-type'>" + "Type" + "</th>"+"<th id='col-status'>" + "User Status" + "</th>"+
+			"<th>" + " " + "</th>"+ "</tr>";
+			$(dataHeader).appendTo("#userstable thead");
 					
 					// printing the table data
-					$("#userstable tbody").html("");
-					console.log(users.user[0].firstname);
-					for(i=0; i< users.user.length; i++){
-						// var id = users.user[i].firstname;
-						// console.log("ooo");
-						// $id = users.user[i].id;
-						// console.log("id "+ $id);
-					var data = "<tr id="+users.user[i].id+">"+ "<td>" + users.user[i].id + "</td>" + "<td>"+ users.user[i].username+ "</td>" +
-					"<td>"+users.user[i].firstname+ "</td>" + "<td>" + users.user[i].lastname + "</td>" +
-					"<td>"+ users.user[i].telephone + "</td>" + "<td>" +
-					users.user[i].type + "</td>" + 
-					"<td>"+ users.user[i].status + "</td>" + 
-					"</tr>";
-					$(data).appendTo("#userstable tbody");
-				}
-				// var x = document.getElementsByClassName[i]("disablebtn");
-				// console.log(x);
-				// console.log(x.name);
-				// x.addEventListener("click",disableUser);
-            }
+			$("#userstable tbody").html("");
+			console.log(users.user[0].firstname);
+			for(i=0; i< users.user.length; i++){
+				var data = "<tr id="+users.user[i].id+">"+ "<td>" + users.user[i].id + "</td>" + "<td>"+ users.user[i].username+ "</td>" +
+				"<td>"+users.user[i].firstname+ "</td>" + "<td>" + users.user[i].lastname + "</td>" +
+				"<td>"+ users.user[i].telephone + "</td>" + "<td>" +
+				users.user[i].type + "</td>" + 
+				"<td>"+ users.user[i].status + "</td>" + 
+				"</tr>";
+				$(data).appendTo("#userstable tbody");
 			}
+        }
+	}
 			
 	function disableUser(){
 				// alert("disable user entered");
