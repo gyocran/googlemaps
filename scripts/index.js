@@ -43,7 +43,8 @@
 	function login(){
             var username = $("#username").val();
             var password = $("#password").val();
-                var url = "login_ajax.php?cmd=3&username=" + username + "&pword=" + password;
+                // var url = "login_ajax.php?cmd=3&username=" + username + "&pword=" + password;
+				var url = "http://52.89.116.249/~george_ocran/locateall/login_ajax.php?cmd=3&username=" + username + "&pword=" + password;
                 $.ajax(url,
                         {
                             async: true, complete: loginComplete
@@ -88,7 +89,9 @@
 				var telephone = $("#reg_telephone").val();
 				var pass = $("#reg_password").val();
 				console.log(username);
-                var url = "register_ajax.php?cmd=3&username="+username+"&firstname="+firstname+"&lastname="+lastname+"&telephone="+telephone+"&password="+pass;
+                // var url = "register_ajax.php?cmd=3&username="+username+"&firstname="+firstname+"&lastname="+lastname+"&telephone="+telephone+"&password="+pass;
+				var url = "http://52.89.116.249/~george_ocran/locateall/register_ajax.php?cmd=3&username="+username+"&firstname="+firstname+"&lastname="+lastname+"&telephone="+telephone+"&password="+pass;
+				
                 $.ajax(url,
                         {
 						      async: true, complete: registerUserComplete
@@ -109,7 +112,7 @@
 	}
 	
 	function getUsers(){
-                var url = "admin_ajax.php?cmd=0";
+                var url = "http://52.89.116.249/~george_ocran/locateall/admin_ajax.php?cmd=0";
                 $.ajax(url,
                         {
 						      async: true, complete: getUsersComplete
@@ -155,7 +158,7 @@
 				// var user_id = user_id;
 				
 			var id = $("#user_id").val();
-            var url = "admin_ajax.php?cmd=1&id="+id;
+            var url = "http://52.89.116.249/~george_ocran/locateall/admin_ajax.php?cmd=1&id="+id;
             $.ajax(url,
                 {
 					async: true, complete: disableUserComplete
@@ -181,7 +184,7 @@
 	
 	function enableUser(){			
 		var id = $("#user_id").val();
-        var url = "admin_ajax.php?cmd=2&id="+id;
+        var url = "http://52.89.116.249/~george_ocran/locateall/admin_ajax.php?cmd=2&id="+id;
             $.ajax(url,
                 {
 					async: true, complete: enableUserComplete
