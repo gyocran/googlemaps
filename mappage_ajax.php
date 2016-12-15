@@ -9,7 +9,6 @@ if (!isset($_REQUEST['cmd'])) {
 $cmd = $_REQUEST['cmd'];
 
 switch ($cmd) {
-        break;
 	case 4:
         sendsms('233246540165','george.o');
 		break;
