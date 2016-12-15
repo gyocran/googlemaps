@@ -2,48 +2,48 @@
 	document.addEventListener('deviceready', onDeviceReady.bind(this), false);
 	
 	function onDeviceReady() {
-		document.getElementById("newUser").addEventListener("click",
-			registerUser);
-		document.getElementById("getusers").addEventListener("click",
-			getUsers);
-		document.getElementById("refresh").addEventListener("click",
-			reload);
+		// document.getElementById("newUser").addEventListener("click",
+			// registerUser);
+		// document.getElementById("getusers").addEventListener("click",
+			// getUsers);
+		// document.getElementById("refresh").addEventListener("click",
+			// reload);
 		// document.getElementById("loginbutton").addEventListener("click",
 			// login);
-		document.getElementById("disablebutton").addEventListener("click",
-			disableUser);
-		document.getElementById("enablebutton").addEventListener("click",
-			enableUser);
-		document.getElementById("contacts").addEventListener("click",
-			getContacts);
+		// document.getElementById("disablebutton").addEventListener("click",
+			// disableUser);
+		// document.getElementById("enablebutton").addEventListener("click",
+			// enableUser);
+		// document.getElementById("contacts").addEventListener("click",
+			// getContacts);
 	};
 	
 	
-	function getContacts() {
-		navigator.contacts.find([navigator.contacts.fieldType.displayName],getContactsComplete,errorHandler);
-	}
+	// function getContacts() {
+		// navigator.contacts.find([navigator.contacts.fieldType.displayName],getContactsComplete,errorHandler);
+	// }
 	
-	function errorHandler(e) {
-		console.log("errorHandler: "+e);
-	}
+	// function errorHandler(e) {
+		// console.log("errorHandler: "+e);
+	// }
 	
-	function getContactsComplete(c) {
-		console.log("gotContacts, number of results "+c.length);
+	// function getContactsComplete(c) {
+		// console.log("gotContacts, number of results "+c.length);
 
-		mobileDiv = document.querySelector("#contacts");
+		// mobileDiv = document.querySelector("#contacts");
 
-		for(var i=0, len=c.length; i<len; i++) {
-			if(c[i].phoneNumbers && c[i].phoneNumbers.length > 0) {
-				mobileDiv.innerHTML += "<p>"+c[i].displayName+"<br/>"+c[i].phoneNumbers[0].value+"</p>";
-			}
-		}
-	}
+		// for(var i=0, len=c.length; i<len; i++) {
+			// if(c[i].phoneNumbers && c[i].phoneNumbers.length > 0) {
+				// mobileDiv.innerHTML += "<p>"+c[i].displayName+"<br/>"+c[i].phoneNumbers[0].value+"</p>";
+			// }
+		// }
+	// }
 
 	
 	// function login(){
             // var username = $("#username").val();
             // var password = $("#password").val();
-                var url = "login_ajax.php?cmd=3&username=" + username + "&pword=" + password;
+                // var url = "login_ajax.php?cmd=3&username=" + username + "&pword=" + password;
 				// var url = "http://52.89.116.249/~george_ocran/locateall/login_ajax.php?cmd=3&username=" + username + "&pword=" + password;
                 // $.ajax(url,
                         // {
@@ -82,126 +82,126 @@
                 // }
             // }
 			
-	function registerUser(){
-				var username = $("#reg_username").val();
-				var firstname = $("#reg_firstname").val();
-				var lastname = $("#reg_lastname").val();
-				var telephone = $("#reg_telephone").val();
-				var pass = $("#reg_password").val();
-				console.log(username);
-                // var url = "register_ajax.php?cmd=3&username="+username+"&firstname="+firstname+"&lastname="+lastname+"&telephone="+telephone+"&password="+pass;
-				var url = "http://52.89.116.249/~george_ocran/locateall/register_ajax.php?cmd=3&username="+username+"&firstname="+firstname+"&lastname="+lastname+"&telephone="+telephone+"&password="+pass;
+	// function registerUser(){
+				// var username = $("#reg_username").val();
+				// var firstname = $("#reg_firstname").val();
+				// var lastname = $("#reg_lastname").val();
+				// var telephone = $("#reg_telephone").val();
+				// var pass = $("#reg_password").val();
+				// console.log(username);
+                var url = "register_ajax.php?cmd=3&username="+username+"&firstname="+firstname+"&lastname="+lastname+"&telephone="+telephone+"&password="+pass;
+				// var url = "http://52.89.116.249/~george_ocran/locateall/register_ajax.php?cmd=3&username="+username+"&firstname="+firstname+"&lastname="+lastname+"&telephone="+telephone+"&password="+pass;
 				
-                $.ajax(url,
-                        {
-						      async: true, complete: registerUserComplete
-                        });
-           }
+                // $.ajax(url,
+                        // {
+						      // async: true, complete: registerUserComplete
+                        // });
+           // }
 		   
-	function registerUserComplete(xhr,status){
-		var newUser = $.parseJSON(xhr.responseText);
-		if (newUser.result===0){
-            alert("failed to add new user");
-			return;
-            }
-		else if(newUser.result===1)
-			console.log(newUser.message);
-			console.log(newUser.sms);
-		alert("Congratulations! You have been added");
-		// location.href = "#landingpage";
-	}
+	// function registerUserComplete(xhr,status){
+		// var newUser = $.parseJSON(xhr.responseText);
+		// if (newUser.result===0){
+            // alert("failed to add new user");
+			// return;
+            // }
+		// else if(newUser.result===1)
+			// console.log(newUser.message);
+			// console.log(newUser.sms);
+		// alert("Congratulations! You have been added");
+		location.href = "#landingpage";
+	// }
 	
-	function getUsers(){
-                var url = "http://52.89.116.249/~george_ocran/locateall/admin_ajax.php?cmd=0";
-                $.ajax(url,
-                        {
-						      async: true, complete: getUsersComplete
-                        });
-           }
+	// function getUsers(){
+                // var url = "http://52.89.116.249/~george_ocran/locateall/admin_ajax.php?cmd=0";
+                // $.ajax(url,
+                        // {
+						      // async: true, complete: getUsersComplete
+                        // });
+           // }
 		   			
-	function getUsersComplete(xhr, status){
-        if (status != "success"){
-				alert("Failed to get users");
-            }
+	// function getUsersComplete(xhr, status){
+        // if (status != "success"){
+				// alert("Failed to get users");
+            // }
 
-        var users = $.parseJSON(xhr.responseText);
-        if (users == false){
-            alert("Failed to get users");
-        }
-        else {
-			// console.log(users);
+        // var users = $.parseJSON(xhr.responseText);
+        // if (users == false){
+            // alert("Failed to get users");
+        // }
+        // else {
+			console.log(users);
 					
-			$("#userstable thead").html("");
-			var dataHeader = "<tr>" + "<th id='col-userId'>" + "User ID" + "</th>" + "<th id='col-username'>" + "Username" + "</th>" + "<th id='col-firstname'>" + 
-			"Firstname" + "</th>" + "<th id='col-lastname'>" + "Lastname" + "</th>" + "<th id='col-telephone'>" + "Telephone Number" + "</th>" +
-			"<th id='col-type'>" + "Type" + "</th>"+"<th id='col-status'>" + "User Status" + "</th>"+
-			"<th>" + " " + "</th>"+ "</tr>";
-			$(dataHeader).appendTo("#userstable thead");
+			// $("#userstable thead").html("");
+			// var dataHeader = "<tr>" + "<th id='col-userId'>" + "User ID" + "</th>" + "<th id='col-username'>" + "Username" + "</th>" + "<th id='col-firstname'>" + 
+			// "Firstname" + "</th>" + "<th id='col-lastname'>" + "Lastname" + "</th>" + "<th id='col-telephone'>" + "Telephone Number" + "</th>" +
+			// "<th id='col-type'>" + "Type" + "</th>"+"<th id='col-status'>" + "User Status" + "</th>"+
+			// "<th>" + " " + "</th>"+ "</tr>";
+			// $(dataHeader).appendTo("#userstable thead");
 					
-					// printing the table data
-			$("#userstable tbody").html("");
-			console.log(users.user[0].firstname);
-			for(i=0; i< users.user.length; i++){
-				var data = "<tr id="+users.user[i].id+">"+ "<td>" + users.user[i].id + "</td>" + "<td>"+ users.user[i].username+ "</td>" +
-				"<td>"+users.user[i].firstname+ "</td>" + "<td>" + users.user[i].lastname + "</td>" +
-				"<td>"+ users.user[i].telephone + "</td>" + "<td>" +
-				users.user[i].type + "</td>" + 
-				"<td>"+ users.user[i].status + "</td>" + 
-				"</tr>";
-				$(data).appendTo("#userstable tbody");
-			}
-        }
-	}
+					printing the table data
+			// $("#userstable tbody").html("");
+			// console.log(users.user[0].firstname);
+			// for(i=0; i< users.user.length; i++){
+				// var data = "<tr id="+users.user[i].id+">"+ "<td>" + users.user[i].id + "</td>" + "<td>"+ users.user[i].username+ "</td>" +
+				// "<td>"+users.user[i].firstname+ "</td>" + "<td>" + users.user[i].lastname + "</td>" +
+				// "<td>"+ users.user[i].telephone + "</td>" + "<td>" +
+				// users.user[i].type + "</td>" + 
+				// "<td>"+ users.user[i].status + "</td>" + 
+				// "</tr>";
+				// $(data).appendTo("#userstable tbody");
+			// }
+        // }
+	// }
 			
-	function disableUser(){
-				// alert("disable user entered");
-				// var user_id = user_id;
+	// function disableUser(){
+				alert("disable user entered");
+				var user_id = user_id;
 				
-			var id = $("#user_id").val();
-            var url = "http://52.89.116.249/~george_ocran/locateall/admin_ajax.php?cmd=1&id="+id;
-            $.ajax(url,
-                {
-					async: true, complete: disableUserComplete
-                });
-    }
+			// var id = $("#user_id").val();
+            // var url = "http://52.89.116.249/~george_ocran/locateall/admin_ajax.php?cmd=1&id="+id;
+            // $.ajax(url,
+                // {
+					// async: true, complete: disableUserComplete
+                // });
+    // }
 		   
-	function disableUserComplete(xhr,status){
-		var currentStatus = $.parseJSON(xhr.responseText);
-		if (currentStatus.result===0){
-            alert(currentStatus.message);
-			return;
-        }
-		else if(currentStatus.result===1)
-			console.log(currentStatus.message);
-			alert(currentStatus.message);
-			getUsers();
-			location.href = "#adminpage";
-	}
+	// function disableUserComplete(xhr,status){
+		// var currentStatus = $.parseJSON(xhr.responseText);
+		// if (currentStatus.result===0){
+            // alert(currentStatus.message);
+			// return;
+        // }
+		// else if(currentStatus.result===1)
+			// console.log(currentStatus.message);
+			// alert(currentStatus.message);
+			// getUsers();
+			// location.href = "#adminpage";
+	// }
 			
-	function reload(){
-			location.reload();
-		};
+	// function reload(){
+			// location.reload();
+		// };
 	
-	function enableUser(){			
-		var id = $("#user_id").val();
-        var url = "http://52.89.116.249/~george_ocran/locateall/admin_ajax.php?cmd=2&id="+id;
-            $.ajax(url,
-                {
-					async: true, complete: enableUserComplete
-                });
-    }
+	// function enableUser(){			
+		// var id = $("#user_id").val();
+        // var url = "http://52.89.116.249/~george_ocran/locateall/admin_ajax.php?cmd=2&id="+id;
+            // $.ajax(url,
+                // {
+					// async: true, complete: enableUserComplete
+                // });
+    // }
 	
-	function enableUserComplete(xhr,status){
-		var currentStatus = $.parseJSON(xhr.responseText);
-		if (currentStatus.result===0){
-            alert(currentStatus.message);
-			return;
-        }
-		else if(currentStatus.result===1)
-			console.log(currentStatus.message);
-			alert(currentStatus.message);
-			getUsers();
-			location.href = "#adminpage";
+	// function enableUserComplete(xhr,status){
+		// var currentStatus = $.parseJSON(xhr.responseText);
+		// if (currentStatus.result===0){
+            // alert(currentStatus.message);
+			// return;
+        // }
+		// else if(currentStatus.result===1)
+			// console.log(currentStatus.message);
+			// alert(currentStatus.message);
+			// getUsers();
+			// location.href = "#adminpage";
 	}
 })();
 
