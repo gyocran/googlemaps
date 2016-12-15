@@ -8,8 +8,8 @@
 			getUsers);
 		document.getElementById("refresh").addEventListener("click",
 			reload);
-		document.getElementById("loginbutton").addEventListener("click",
-			login);
+		// document.getElementById("loginbutton").addEventListener("click",
+			// login);
 		document.getElementById("disablebutton").addEventListener("click",
 			disableUser);
 		document.getElementById("enablebutton").addEventListener("click",
@@ -40,47 +40,47 @@
 	}
 
 	
-	function login(){
-            var username = $("#username").val();
-            var password = $("#password").val();
-                // var url = "login_ajax.php?cmd=3&username=" + username + "&pword=" + password;
-				var url = "http://52.89.116.249/~george_ocran/locateall/login_ajax.php?cmd=3&username=" + username + "&pword=" + password;
-                $.ajax(url,
-                        {
-                            async: true, complete: loginComplete
-                        });
-            }
+	// function login(){
+            // var username = $("#username").val();
+            // var password = $("#password").val();
+                var url = "login_ajax.php?cmd=3&username=" + username + "&pword=" + password;
+				// var url = "http://52.89.116.249/~george_ocran/locateall/login_ajax.php?cmd=3&username=" + username + "&pword=" + password;
+                // $.ajax(url,
+                        // {
+                            // async: true, complete: loginComplete
+                        // });
+            // }
 	  	
-	function loginComplete(xhr, status){
-                if (status != "success")
-                {
-                    alert("Invalid Login");
-                }
+	// function loginComplete(xhr, status){
+                // if (status != "success")
+                // {
+                    // alert("Invalid Login");
+                // }
 
-                var log = $.parseJSON(xhr.responseText);
-                if (log.result == 0)
-                {
-                    errorMsg.innerHTML = log.message;
-                }
-                else if(log.user_type == 'Admin')
-                {
-					document.getElementById("adminname").innerHTML = log.user_firstname;
-                    location.href = "#adminpage";
-					return;
-                }
-				else if(log.user_status == 'Disabled')
-                {
-					errorMsg.innerHTML = "Sorry, you have been disabled";
-                    location.href = "#index";
-					return;
-                }
-				else if(log.user_type == 'Guest')
-                {
-					console.log(log.user_type);
-                    location.href = "#mappage";
-					return;
-                }
-            }
+                // var log = $.parseJSON(xhr.responseText);
+                // if (log.result == 0)
+                // {
+                    // errorMsg.innerHTML = log.message;
+                // }
+                // else if(log.user_type == 'Admin')
+                // {
+					// document.getElementById("adminname").innerHTML = log.user_firstname;
+                    // location.href = "#adminpage";
+					// return;
+                // }
+				// else if(log.user_status == 'Disabled')
+                // {
+					// errorMsg.innerHTML = "Sorry, you have been disabled";
+                    // location.href = "#index";
+					// return;
+                // }
+				// else if(log.user_type == 'Guest')
+                // {
+					// console.log(log.user_type);
+                    // location.href = "#mappage";
+					// return;
+                // }
+            // }
 			
 	function registerUser(){
 				var username = $("#reg_username").val();
